@@ -3,6 +3,7 @@ using Graphics4Proj.Geometry;
 using Graphics4Proj.Lights;
 using Graphics4Proj.Shapes;
 using System.Numerics;
+using Timer = System.Windows.Forms.Timer;
 
 namespace Graphics4Proj
 {
@@ -42,6 +43,8 @@ namespace Graphics4Proj
         private Camera dynamicCamera;
         private Camera followingCamera;
 
+        private Timer timer;
+
         public Form1()
         {
             InitializeComponent();
@@ -50,6 +53,11 @@ namespace Graphics4Proj
             InitializeShapes();
             InitializeLigths();
             InitializeCameras();
+
+            timer = new Timer();
+            this.timer.Enabled = true;
+            this.timer.Interval = 10;
+            this.timer.Tick += new System.EventHandler(this.timer1_Tick);
         }
 
         private void InitializeShapes()
@@ -109,10 +117,24 @@ namespace Graphics4Proj
         private void MoveCube()
         {
             cube.ResetModelMatrix();
-            cube.Rotate(Axis.Y, cubeAngle);
+            //cube.Rotate(Axis.Y, cubeAngle);
             cubeAngle += Math.PI / 60;
             cubeAngle %= 2 * Math.PI;
             cube.Translate(cubeShift, 0, CubeZDist);
+
+            cubeShift += cubeChange;
+
+            if (Math.Abs(cubeShift) >= CubeMovementRange)
+                cubeChange *= -1;
+        }
+
+        private void MoveCone()
+        {
+            cone.ResetModelMatrix();
+            cone.Rotate(Axis.Y, cubeAngle);
+            cubeAngle += Math.PI / 60;
+            cubeAngle %= 2 * Math.PI;
+            cone.Translate(cubeShift, 0, CubeZDist);
 
             cubeShift += cubeChange;
 
@@ -148,6 +170,7 @@ namespace Graphics4Proj
         private void timer1_Tick(object sender, EventArgs e)
         {
             MoveCube();
+            MoveCone();
             SetDynamicCamera();
             SetFollowingCamera();
             RotateSpotLight();
