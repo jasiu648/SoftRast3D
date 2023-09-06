@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Light\" />
     <Folder Include="Shapes\" />
   </ItemGroup>
 
