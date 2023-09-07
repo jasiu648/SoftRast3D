@@ -10,11 +10,9 @@ namespace Graphics4Proj
     public partial class Form1 : Form
     {
         //Constants
-        private const float BehindDistance = 6;
-        private const float BehindHeight = 2;
         private const float CubeZDist = 5;
         private const float CubeMovementRange = 3;
-        private const float TargetDistance = 4;
+        
 
         private double cubeAngle;
         private float cubeChange = 0.05f;
@@ -26,7 +24,7 @@ namespace Graphics4Proj
         private Mesh lighter;
         private Mesh lighter2;
         private Mesh sphere;
-        private Mesh floor;
+        private Floor floor;
         private Mesh cone;
 
         private Device device;
@@ -56,7 +54,7 @@ namespace Graphics4Proj
             timer = new Timer();
             timer.Enabled = true;
             timer.Interval = 10;
-            timer.Tick += new System.EventHandler(this.timer1_Tick);
+            timer.Tick += new EventHandler(this.timer1_Tick);
         }
 
         private void InitializeShapes()
@@ -72,12 +70,12 @@ namespace Graphics4Proj
             lighter2 = ShapesGenerator.CreateCylinder(15, 1.5, 0.2, Color.Brown);
             lighter2.Translate(0, -0.5f, -4);
 
-            floor = ShapesGenerator.CreateFloor(Color.FromArgb(86, 125, 70));
+            floor = new Floor(Color.FromArgb(86, 125, 70));
             floor.Scale(3.5f, 1f, 3);
             floor.Translate(0, -0.5f, 0);
 
             cone = ShapesGenerator.CreateCone(10, 1, 2);
-            cone.Translate(0.5f, -0.5f, 1);
+            cone.Translate(2, -0.5f, 2);
 
             device.Meshes.Add(cone);
             device.Meshes.Add(lighter);
@@ -109,7 +107,7 @@ namespace Graphics4Proj
             {
                 IsSpotLight = true,
                 Position = new Vector3(0, 0, -3),
-                IsTurnedOn = true,
+                IsTurnedOn = false,
                 Direction = new Vector3(0, 0, 1),
                 P = 16
             };
@@ -176,7 +174,7 @@ namespace Graphics4Proj
 
         private void SetThirdPersonCamera()
         {
-            thirdPersonCamera.Position = new Vector3(0, 0, -3 + cubeShift / 4);
+            thirdPersonCamera.Position = new Vector3(0,0, -3 + cubeShift / 4);
             dynamicLight.Position =  new Vector3(0, 0, -3 + cubeShift / 4);
         }
 
