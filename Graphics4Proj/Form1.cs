@@ -174,7 +174,7 @@ namespace Graphics4Proj
 
         private void SetThirdPersonCamera()
         {
-            thirdPersonCamera.Position = new Vector3(0,0, -3 + cubeShift / 4);
+            thirdPersonCamera.Position = new Vector3(0, 0, -3 + cubeShift / 4);
             dynamicLight.Position =  new Vector3(0, 0, -3 + cubeShift / 4);
         }
 
