@@ -13,7 +13,7 @@ namespace Graphics4Proj
         private const float BehindDistance = 6;
         private const float BehindHeight = 2;
         private const float CubeZDist = 5;
-        private const float CubeMovementRange = 4;
+        private const float CubeMovementRange = 3;
         private const float TargetDistance = 4;
 
         private double cubeAngle;
@@ -24,21 +24,23 @@ namespace Graphics4Proj
         //Shapes
         private Mesh cube;
         private Mesh lighter;
+        private Mesh lighter2;
         private Mesh sphere;
         private Mesh floor;
         private Mesh cone;
 
-        private readonly Device device;
+        private Device device;
         private DirectBitmap bitmap;
 
         private Light globalLight;
         private Light spotLight;
+        private Light dynamicLight;
 
         private Camera staticCamera;
         private Camera thirdPersonCamera;
         private Camera followingCamera;
 
-        private Fog fogGenerator;
+        private Fog fog;
 
         private Timer timer;
 
@@ -52,32 +54,37 @@ namespace Graphics4Proj
             InitializeCameras();
 
             timer = new Timer();
-            this.timer.Enabled = true;
-            this.timer.Interval = 10;
-            this.timer.Tick += new System.EventHandler(this.timer1_Tick);
+            timer.Enabled = true;
+            timer.Interval = 10;
+            timer.Tick += new System.EventHandler(this.timer1_Tick);
         }
 
         private void InitializeShapes()
         {
-            lighter = ShapesGenerator.CreateCube();
+            cube = ShapesGenerator.CreateCube();
 
             sphere = ShapesGenerator.CreateSphere(2, Color.Blue);
-            sphere.Translate(-3, 0.2f, 0);
+            //sphere.Translate(-2, 0.2f, 0);
 
-            cube = ShapesGenerator.CreateCylinder(15, 1.5, 0.2, Color.Purple);
+            lighter = ShapesGenerator.CreateCylinder(15, 1.5, 0.2, Color.Purple);
+            lighter.Translate(-5, -0.5f, 0);
+
+            lighter2 = ShapesGenerator.CreateCylinder(15, 1.5, 0.2, Color.Brown);
+            lighter2.Translate(0, -0.5f, -4);
 
             floor = ShapesGenerator.CreateFloor(Color.FromArgb(86, 125, 70));
             floor.Scale(3.5f, 1f, 3);
             floor.Translate(0, -0.5f, 0);
 
             cone = ShapesGenerator.CreateCone(10, 1, 2);
-            cone.Translate(3, -0.5f, -2);
+            cone.Translate(0.5f, -0.5f, 1);
 
             device.Meshes.Add(cone);
             device.Meshes.Add(lighter);
             device.Meshes.Add(cube);
             device.Meshes.Add(sphere);
             device.Meshes.Add(floor);
+            device.Meshes.Add(lighter2);
         }
 
         private void InitializeLigths()
@@ -98,16 +105,26 @@ namespace Graphics4Proj
                 P = 16
             };
 
+            dynamicLight = new Light
+            {
+                IsSpotLight = true,
+                Position = new Vector3(0, 0, -3),
+                IsTurnedOn = true,
+                Direction = new Vector3(0, 0, 1),
+                P = 16
+            };
+
             device.Lights.Add(globalLight);
             device.Lights.Add(spotLight);
+            device.Lights.Add(dynamicLight);
 
-            fogGenerator = new Fog(Color.LightGray, 40);
+            fog = new Fog(Color.LightGray, 40);
         }
 
         private void InitializeCameras()
         {
             staticCamera = new Camera(new Vector3(0f, 20f, -10f), new Vector3(0, 0, 0), new Vector3(0, 0, -1), 50);
-            thirdPersonCamera = new Camera(new Vector3(0f, -20f, -10f), new Vector3(0, 0, 0), new Vector3(0, 1, 0), 65);
+            thirdPersonCamera = new Camera(new Vector3(0f, 10f, -10f), new Vector3(0, 0, 0), new Vector3(0, -1, 0), 65);
             followingCamera = new Camera(new Vector3(0f, 10f, -10f), new Vector3(0, 0, 0), new Vector3(0, -1, 0), 65);
 
             device.SelectedCamera = staticCamera;
@@ -116,16 +133,31 @@ namespace Graphics4Proj
         private void MoveCube()
         {
             cube.ResetModelMatrix();
+            lighter2.ResetModelMatrix();
             cube.Rotate(Axis.Z, cubeAngle);
             //cone.Rotate(Axis.Z, cubeAngle);
             cubeAngle += Math.PI / 60;
             cubeAngle %= 2 * Math.PI;
             cube.Translate(cubeShift, 0, CubeZDist);
+            lighter2.Translate(0, 0, -3f + cubeShift / 4);
 
             cubeShift += cubeChange;
 
             if (Math.Abs(cubeShift) >= CubeMovementRange)
                 cubeChange *= -1;
+        }
+
+        private void MoveLighter()
+        {
+            sphere.ResetModelMatrix();
+            sphere.Rotate(Axis.Z, cubeAngle);
+
+            //lighter2.Translate(0, 0, cubeShift);
+            //cubeAngle += Math.PI / 60;
+            //cubeAngle %= 2 * Math.PI;
+            //sphere.Translate(0, cubeShift, CubeZDist);
+
+            
         }
 
         private void MoveCone()
@@ -142,14 +174,10 @@ namespace Graphics4Proj
                 cubeChange *= -1;
         }
 
-        private void SetDynamicCamera()
+        private void SetThirdPersonCamera()
         {
-            var xV = Math.Sin(cylinderAngle * Math.PI);
-            var zV = Math.Cos(cylinderAngle * Math.PI);
-
-            thirdPersonCamera.Position = new Vector3((float)(-BehindDistance * xV), BehindHeight, (float)(-BehindDistance * zV));
-            thirdPersonCamera.Target = new Vector3((float)(TargetDistance * xV), 0, (float)(TargetDistance * zV));
-            thirdPersonCamera.UpVector = Vector3.Normalize(new Vector3((float)-xV, 0, (float)-zV));
+            thirdPersonCamera.Position = new Vector3(0, 0, -3 + cubeShift / 4);
+            dynamicLight.Position =  new Vector3(0, 0, -3 + cubeShift / 4);
         }
 
         private void RotateSpotLight()
@@ -170,8 +198,8 @@ namespace Graphics4Proj
         private void timer1_Tick(object sender, EventArgs e)
         {
             MoveCube();
-            //MoveCone();
-            SetDynamicCamera();
+            MoveLighter();
+            SetThirdPersonCamera();
             SetFollowingCamera();
             RotateSpotLight();
 
@@ -181,6 +209,7 @@ namespace Graphics4Proj
             pictureBox1.Image = device.Bitmap.Bitmap;
         }
 
+        #region Events
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
             if (radioButton1.Checked)
@@ -233,7 +262,7 @@ namespace Graphics4Proj
         {
             if (checkBox1.Checked)
             {
-                device.Fog = fogGenerator;
+                device.Fog = fog;
             }
             else
             {
@@ -255,6 +284,43 @@ namespace Graphics4Proj
             else
             {
                 timer.Start();
+            }
+        }
+
+        private void checkBox4_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox4.Checked)
+            {
+                globalLight.IsTurnedOn = true;
+            }
+            else
+            {
+                globalLight.IsTurnedOn = false;
+            }
+        }
+        #endregion Events
+
+        private void checkBox5_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox5.Checked)
+            {
+                spotLight.IsTurnedOn = true;
+            }
+            else
+            {
+                spotLight.IsTurnedOn = false;
+            }
+        }
+
+        private void checkBox6_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox6.Checked)
+            {
+                dynamicLight.IsTurnedOn = true;
+            }
+            else
+            {
+                dynamicLight.IsTurnedOn = false;
             }
         }
     }
