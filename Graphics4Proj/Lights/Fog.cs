@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Graphics4Proj.Lights
 {
-    public class FogGenerator
+    public class Fog
     {
         public Color FogColor;
         public float MaxDistance;
 
-        public FogGenerator(Color fogColor, float maxDistance)
+        public Fog(Color fogColor, float maxDistance)
         {
             FogColor = fogColor;
             MaxDistance = maxDistance;

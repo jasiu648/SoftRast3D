@@ -67,8 +67,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.pictureBox1);
-            this.splitContainer1.Size = new System.Drawing.Size(2667, 1393);
-            this.splitContainer1.SplitterDistance = 716;
+            this.splitContainer1.Size = new System.Drawing.Size(2668, 2108);
+            this.splitContainer1.SplitterDistance = 715;
             this.splitContainer1.TabIndex = 0;
             // 
             // groupBox3
@@ -92,6 +92,7 @@
             this.checkBox3.TabIndex = 2;
             this.checkBox3.Text = "Stop Scene";
             this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
             // 
             // checkBox2
             // 
@@ -102,6 +103,7 @@
             this.checkBox2.TabIndex = 1;
             this.checkBox2.Text = "Change Light";
             this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
             // checkBox1
             // 
@@ -112,6 +114,7 @@
             this.checkBox1.TabIndex = 0;
             this.checkBox1.Text = "Fog";
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // groupBox2
             // 
@@ -135,6 +138,7 @@
             this.radioButton6.TabStop = true;
             this.radioButton6.Text = "Gouraud";
             this.radioButton6.UseVisualStyleBackColor = true;
+            this.radioButton6.CheckedChanged += new System.EventHandler(this.radioButton6_CheckedChanged);
             // 
             // radioButton5
             // 
@@ -146,6 +150,7 @@
             this.radioButton5.TabStop = true;
             this.radioButton5.Text = "Phong";
             this.radioButton5.UseVisualStyleBackColor = true;
+            this.radioButton5.CheckedChanged += new System.EventHandler(this.radioButton5_CheckedChanged);
             // 
             // radioButton4
             // 
@@ -157,6 +162,7 @@
             this.radioButton4.TabStop = true;
             this.radioButton4.Text = "Normal";
             this.radioButton4.UseVisualStyleBackColor = true;
+            this.radioButton4.CheckedChanged += new System.EventHandler(this.radioButton4_CheckedChanged);
             // 
             // groupBox1
             // 
@@ -180,6 +186,7 @@
             this.radioButton3.TabStop = true;
             this.radioButton3.Text = "Third Person Perspective";
             this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
             // 
             // radioButton2
             // 
@@ -191,6 +198,7 @@
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "Following";
             this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
             // radioButton1
             // 
@@ -202,12 +210,15 @@
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Static";
             this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(8, 7);
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(7, 8, 7, 8);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1936, 1383);
+            this.pictureBox1.Size = new System.Drawing.Size(1949, 2108);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -215,9 +226,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(17F, 41F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2667, 1393);
+            this.ClientSize = new System.Drawing.Size(2668, 2108);
             this.Controls.Add(this.splitContainer1);
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);

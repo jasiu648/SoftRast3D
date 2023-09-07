@@ -12,19 +12,14 @@ namespace Graphics4Proj
         //Constants
         private const float BehindDistance = 6;
         private const float BehindHeight = 2;
-        private const float CubeZDist = 6;
+        private const float CubeZDist = 5;
         private const float CubeMovementRange = 4;
-        private const float TargetDistance = 7;
+        private const float TargetDistance = 4;
 
         private double cubeAngle;
         private float cubeChange = 0.05f;
         private float cubeShift;
         private double cylinderAngle;
-
-        //Options chosen
-        private bool fogOn;
-        private bool stopAnimation;
-        private bool changedLight;
 
         //Shapes
         private Mesh cube;
@@ -40,8 +35,10 @@ namespace Graphics4Proj
         private Light spotLight;
 
         private Camera staticCamera;
-        private Camera dynamicCamera;
+        private Camera thirdPersonCamera;
         private Camera followingCamera;
+
+        private Fog fogGenerator;
 
         private Timer timer;
 
@@ -103,12 +100,14 @@ namespace Graphics4Proj
 
             device.Lights.Add(globalLight);
             device.Lights.Add(spotLight);
+
+            fogGenerator = new Fog(Color.LightGray, 40);
         }
 
         private void InitializeCameras()
         {
             staticCamera = new Camera(new Vector3(0f, 20f, -10f), new Vector3(0, 0, 0), new Vector3(0, 0, -1), 50);
-            dynamicCamera = new Camera(new Vector3(0, BehindHeight, -BehindDistance), new Vector3(0, 0, TargetDistance), new Vector3(0, 0, -1), 65);
+            thirdPersonCamera = new Camera(new Vector3(0f, -20f, -10f), new Vector3(0, 0, 0), new Vector3(0, 1, 0), 65);
             followingCamera = new Camera(new Vector3(0f, 10f, -10f), new Vector3(0, 0, 0), new Vector3(0, -1, 0), 65);
 
             device.SelectedCamera = staticCamera;
@@ -117,7 +116,8 @@ namespace Graphics4Proj
         private void MoveCube()
         {
             cube.ResetModelMatrix();
-            //cube.Rotate(Axis.Y, cubeAngle);
+            cube.Rotate(Axis.Z, cubeAngle);
+            //cone.Rotate(Axis.Z, cubeAngle);
             cubeAngle += Math.PI / 60;
             cubeAngle %= 2 * Math.PI;
             cube.Translate(cubeShift, 0, CubeZDist);
@@ -147,9 +147,9 @@ namespace Graphics4Proj
             var xV = Math.Sin(cylinderAngle * Math.PI);
             var zV = Math.Cos(cylinderAngle * Math.PI);
 
-            dynamicCamera.Position = new Vector3((float)(-BehindDistance * xV), BehindHeight, (float)(-BehindDistance * zV));
-            dynamicCamera.Target = new Vector3((float)(TargetDistance * xV), 0, (float)(TargetDistance * zV));
-            dynamicCamera.UpVector = Vector3.Normalize(new Vector3((float)-xV, 0, (float)-zV));
+            thirdPersonCamera.Position = new Vector3((float)(-BehindDistance * xV), BehindHeight, (float)(-BehindDistance * zV));
+            thirdPersonCamera.Target = new Vector3((float)(TargetDistance * xV), 0, (float)(TargetDistance * zV));
+            thirdPersonCamera.UpVector = Vector3.Normalize(new Vector3((float)-xV, 0, (float)-zV));
         }
 
         private void RotateSpotLight()
@@ -170,14 +170,92 @@ namespace Graphics4Proj
         private void timer1_Tick(object sender, EventArgs e)
         {
             MoveCube();
-            MoveCone();
+            //MoveCone();
             SetDynamicCamera();
             SetFollowingCamera();
             RotateSpotLight();
+
             bitmap = new DirectBitmap(pictureBox1.Width, pictureBox1.Height);
             device.Bitmap = bitmap;
             device.Render();
             pictureBox1.Image = device.Bitmap.Bitmap;
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton1.Checked)
+            {
+                device.SelectedCamera = staticCamera;
+            }
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton2.Checked)
+            {
+                device.SelectedCamera = followingCamera;
+            }
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton3.Checked)
+            {
+                device.SelectedCamera = thirdPersonCamera;
+            }
+        }
+
+        private void radioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton4.Checked)
+            {
+                device.ShadingType = ShadingType.Flat;
+            }
+        }
+
+        private void radioButton5_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton5.Checked)
+            {
+                device.ShadingType = ShadingType.Phong;
+            }
+        }
+
+        private void radioButton6_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton6.Checked)
+            {
+                device.ShadingType = ShadingType.Gouraud;
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                device.Fog = fogGenerator;
+            }
+            else
+            {
+                device.Fog = null;
+            }
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox3.Checked)
+            {
+                timer.Stop();
+            }
+            else
+            {
+                timer.Start();
+            }
         }
     }
 }

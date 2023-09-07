@@ -1,10 +1,5 @@
 ﻿using Graphics4Proj.Geometry;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Graphics4Proj.Shapes
 {
@@ -38,35 +33,36 @@ namespace Graphics4Proj.Shapes
             AddVertex(new Vector3(-t, 0, -s));
             AddVertex(new Vector3(-t, 0, s));
 
-            var faces = new List<Face>();
+            var faces = new List<Face>
+            {
+                // 5 faces around point 0
+                new Face(points[0], points[11], points[5]),
+                new Face(points[0], points[5], points[1]),
+                new Face(points[0], points[1], points[7]),
+                new Face(points[0], points[7], points[10]),
+                new Face(points[0], points[10], points[11]),
 
-            // 5 faces around point 0
-            faces.Add(new Face(points[0], points[11], points[5]));
-            faces.Add(new Face(points[0], points[5], points[1]));
-            faces.Add(new Face(points[0], points[1], points[7]));
-            faces.Add(new Face(points[0], points[7], points[10]));
-            faces.Add(new Face(points[0], points[10], points[11]));
+                // 5 adjacent faces 
+                new Face(points[1], points[5], points[9]),
+                new Face(points[5], points[11], points[4]),
+                new Face(points[11], points[10], points[2]),
+                new Face(points[10], points[7], points[6]),
+                new Face(points[7], points[1], points[8]),
 
-            // 5 adjacent faces 
-            faces.Add(new Face(points[1], points[5], points[9]));
-            faces.Add(new Face(points[5], points[11], points[4]));
-            faces.Add(new Face(points[11], points[10], points[2]));
-            faces.Add(new Face(points[10], points[7], points[6]));
-            faces.Add(new Face(points[7], points[1], points[8]));
+                // 5 faces around point 3
+                new Face(points[3], points[9], points[4]),
+                new Face(points[3], points[4], points[2]),
+                new Face(points[3], points[2], points[6]),
+                new Face(points[3], points[6], points[8]),
+                new Face(points[3], points[8], points[9]),
 
-            // 5 faces around point 3
-            faces.Add(new Face(points[3], points[9], points[4]));
-            faces.Add(new Face(points[3], points[4], points[2]));
-            faces.Add(new Face(points[3], points[2], points[6]));
-            faces.Add(new Face(points[3], points[6], points[8]));
-            faces.Add(new Face(points[3], points[8], points[9]));
-
-            // 5 adjacent faces 
-            faces.Add(new Face(points[4], points[9], points[5]));
-            faces.Add(new Face(points[2], points[4], points[11]));
-            faces.Add(new Face(points[6], points[2], points[10]));
-            faces.Add(new Face(points[8], points[6], points[7]));
-            faces.Add(new Face(points[9], points[8], points[1]));
+                // 5 adjacent faces 
+                new Face(points[4], points[9], points[5]),
+                new Face(points[2], points[4], points[11]),
+                new Face(points[6], points[2], points[10]),
+                new Face(points[8], points[6], points[7]),
+                new Face(points[9], points[8], points[1])
+            };
 
 
             // refine triangles
@@ -109,8 +105,7 @@ namespace Graphics4Proj.Shapes
             var greaterIndex = firstIsSmaller ? i2 : i1;
             var key = (smallerIndex << 32) + greaterIndex;
 
-            int ret;
-            if (middlePointIndexCache.TryGetValue(key, out ret)) return ret;
+            if (middlePointIndexCache.TryGetValue(key, out int ret)) return ret;
 
             // not in cache, calculate it
 
