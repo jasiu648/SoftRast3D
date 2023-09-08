@@ -20,12 +20,12 @@ namespace Graphics4Proj
         private double cylinderAngle;
 
         //Shapes
-        private Mesh cube;
-        private Mesh lighter;
-        private Mesh lighter2;
+        private Cube cube;
+        private Cylinder lighter;
+        private Cylinder lighter2;
         private Mesh sphere;
         private Floor floor;
-        private Mesh cone;
+        private Cone cone;
 
         private Device device;
         private DirectBitmap bitmap;
@@ -59,22 +59,22 @@ namespace Graphics4Proj
 
         private void InitializeShapes()
         {
-            cube = ShapesGenerator.CreateCube();
+            cube = new Cube(Color.HotPink);
 
             sphere = ShapesGenerator.CreateSphere(2, Color.Blue);
             //sphere.Translate(-2, 0.2f, 0);
 
-            lighter = ShapesGenerator.CreateCylinder(15, 1.5, 0.2, Color.Purple);
+            lighter = new Cylinder(15, 1.5, 0.2, Color.Purple);
             lighter.Translate(-5, -0.5f, 0);
 
-            lighter2 = ShapesGenerator.CreateCylinder(15, 1.5, 0.2, Color.Brown);
+            lighter2 = new Cylinder(15, 1.5, 0.2, Color.Brown);
             lighter2.Translate(0, -0.5f, -4);
 
-            floor = new Floor(Color.FromArgb(86, 125, 70));
+            floor = new Floor(Color.Green);
             floor.Scale(3.5f, 1f, 3);
             floor.Translate(0, -0.5f, 0);
 
-            cone = ShapesGenerator.CreateCone(10, 1, 2);
+            cone = new Cone(Color.Yellow, 10, 1, 2);
             cone.Translate(2, -0.5f, 2);
 
             device.Meshes.Add(cone);
@@ -321,5 +321,7 @@ namespace Graphics4Proj
                 dynamicLight.IsTurnedOn = false;
             }
         }
+
+        
     }
 }

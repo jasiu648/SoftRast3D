@@ -62,6 +62,7 @@
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(1);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -74,8 +75,9 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.pictureBox1);
-            this.splitContainer1.Size = new System.Drawing.Size(2668, 2108);
-            this.splitContainer1.SplitterDistance = 715;
+            this.splitContainer1.Size = new System.Drawing.Size(1482, 953);
+            this.splitContainer1.SplitterDistance = 395;
+            this.splitContainer1.SplitterWidth = 2;
             this.splitContainer1.TabIndex = 0;
             // 
             // groupBox4
@@ -84,9 +86,11 @@
             this.groupBox4.Controls.Add(this.checkBox6);
             this.groupBox4.Controls.Add(this.checkBox5);
             this.groupBox4.Controls.Add(this.checkBox4);
-            this.groupBox4.Location = new System.Drawing.Point(40, 1344);
+            this.groupBox4.Location = new System.Drawing.Point(19, 656);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(1);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(643, 414);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(1);
+            this.groupBox4.Size = new System.Drawing.Size(303, 202);
             this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Lights";
@@ -94,19 +98,22 @@
             // checkBox7
             // 
             this.checkBox7.AutoSize = true;
-            this.checkBox7.Location = new System.Drawing.Point(50, 321);
+            this.checkBox7.Location = new System.Drawing.Point(24, 157);
+            this.checkBox7.Margin = new System.Windows.Forms.Padding(1);
             this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(296, 45);
+            this.checkBox7.Size = new System.Drawing.Size(152, 24);
             this.checkBox7.TabIndex = 3;
             this.checkBox7.Text = "Dynamic direction";
             this.checkBox7.UseVisualStyleBackColor = true;
+            this.checkBox7.CheckedChanged += new System.EventHandler(this.checkBox7_CheckedChanged);
             // 
             // checkBox6
             // 
             this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(50, 239);
+            this.checkBox6.Location = new System.Drawing.Point(24, 117);
+            this.checkBox6.Margin = new System.Windows.Forms.Padding(1);
             this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(171, 45);
+            this.checkBox6.Size = new System.Drawing.Size(89, 24);
             this.checkBox6.TabIndex = 2;
             this.checkBox6.Text = "Dynamic";
             this.checkBox6.UseVisualStyleBackColor = true;
@@ -115,9 +122,10 @@
             // checkBox5
             // 
             this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(50, 157);
+            this.checkBox5.Location = new System.Drawing.Point(24, 77);
+            this.checkBox5.Margin = new System.Windows.Forms.Padding(1);
             this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(127, 45);
+            this.checkBox5.Size = new System.Drawing.Size(68, 24);
             this.checkBox5.TabIndex = 1;
             this.checkBox5.Text = "Static";
             this.checkBox5.UseVisualStyleBackColor = true;
@@ -128,9 +136,10 @@
             this.checkBox4.AutoSize = true;
             this.checkBox4.Checked = true;
             this.checkBox4.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox4.Location = new System.Drawing.Point(50, 80);
+            this.checkBox4.Location = new System.Drawing.Point(24, 39);
+            this.checkBox4.Margin = new System.Windows.Forms.Padding(1);
             this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(142, 45);
+            this.checkBox4.Size = new System.Drawing.Size(75, 24);
             this.checkBox4.TabIndex = 0;
             this.checkBox4.Text = "Global";
             this.checkBox4.UseVisualStyleBackColor = true;
@@ -141,9 +150,11 @@
             this.groupBox3.Controls.Add(this.checkBox3);
             this.groupBox3.Controls.Add(this.checkBox2);
             this.groupBox3.Controls.Add(this.checkBox1);
-            this.groupBox3.Location = new System.Drawing.Point(40, 917);
+            this.groupBox3.Location = new System.Drawing.Point(19, 447);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(1);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(642, 422);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(1);
+            this.groupBox3.Size = new System.Drawing.Size(302, 206);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Options";
@@ -151,9 +162,10 @@
             // checkBox3
             // 
             this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(50, 253);
+            this.checkBox3.Location = new System.Drawing.Point(24, 123);
+            this.checkBox3.Margin = new System.Windows.Forms.Padding(1);
             this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(204, 45);
+            this.checkBox3.Size = new System.Drawing.Size(105, 24);
             this.checkBox3.TabIndex = 2;
             this.checkBox3.Text = "Stop Scene";
             this.checkBox3.UseVisualStyleBackColor = true;
@@ -162,9 +174,10 @@
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(50, 165);
+            this.checkBox2.Location = new System.Drawing.Point(24, 80);
+            this.checkBox2.Margin = new System.Windows.Forms.Padding(1);
             this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(232, 45);
+            this.checkBox2.Size = new System.Drawing.Size(118, 24);
             this.checkBox2.TabIndex = 1;
             this.checkBox2.Text = "Change Light";
             this.checkBox2.UseVisualStyleBackColor = true;
@@ -173,9 +186,10 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(50, 76);
+            this.checkBox1.Location = new System.Drawing.Point(24, 37);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(1);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(107, 45);
+            this.checkBox1.Size = new System.Drawing.Size(56, 24);
             this.checkBox1.TabIndex = 0;
             this.checkBox1.Text = "Fog";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -186,9 +200,11 @@
             this.groupBox2.Controls.Add(this.radioButton6);
             this.groupBox2.Controls.Add(this.radioButton5);
             this.groupBox2.Controls.Add(this.radioButton4);
-            this.groupBox2.Location = new System.Drawing.Point(40, 487);
+            this.groupBox2.Location = new System.Drawing.Point(19, 238);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(1);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(642, 387);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(1);
+            this.groupBox2.Size = new System.Drawing.Size(302, 189);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Shading";
@@ -196,9 +212,10 @@
             // radioButton6
             // 
             this.radioButton6.AutoSize = true;
-            this.radioButton6.Location = new System.Drawing.Point(50, 245);
+            this.radioButton6.Location = new System.Drawing.Point(24, 120);
+            this.radioButton6.Margin = new System.Windows.Forms.Padding(1);
             this.radioButton6.Name = "radioButton6";
-            this.radioButton6.Size = new System.Drawing.Size(171, 45);
+            this.radioButton6.Size = new System.Drawing.Size(87, 24);
             this.radioButton6.TabIndex = 5;
             this.radioButton6.TabStop = true;
             this.radioButton6.Text = "Gouraud";
@@ -208,9 +225,10 @@
             // radioButton5
             // 
             this.radioButton5.AutoSize = true;
-            this.radioButton5.Location = new System.Drawing.Point(50, 157);
+            this.radioButton5.Location = new System.Drawing.Point(24, 77);
+            this.radioButton5.Margin = new System.Windows.Forms.Padding(1);
             this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(142, 45);
+            this.radioButton5.Size = new System.Drawing.Size(72, 24);
             this.radioButton5.TabIndex = 4;
             this.radioButton5.TabStop = true;
             this.radioButton5.Text = "Phong";
@@ -220,9 +238,10 @@
             // radioButton4
             // 
             this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(50, 66);
+            this.radioButton4.Location = new System.Drawing.Point(24, 32);
+            this.radioButton4.Margin = new System.Windows.Forms.Padding(1);
             this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(153, 45);
+            this.radioButton4.Size = new System.Drawing.Size(80, 24);
             this.radioButton4.TabIndex = 3;
             this.radioButton4.TabStop = true;
             this.radioButton4.Text = "Normal";
@@ -234,9 +253,11 @@
             this.groupBox1.Controls.Add(this.radioButton3);
             this.groupBox1.Controls.Add(this.radioButton2);
             this.groupBox1.Controls.Add(this.radioButton1);
-            this.groupBox1.Location = new System.Drawing.Point(40, 32);
+            this.groupBox1.Location = new System.Drawing.Point(19, 16);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(1);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(642, 428);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(1);
+            this.groupBox1.Size = new System.Drawing.Size(302, 209);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Camera";
@@ -244,9 +265,10 @@
             // radioButton3
             // 
             this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(50, 263);
+            this.radioButton3.Location = new System.Drawing.Point(24, 128);
+            this.radioButton3.Margin = new System.Windows.Forms.Padding(1);
             this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(379, 45);
+            this.radioButton3.Size = new System.Drawing.Size(189, 24);
             this.radioButton3.TabIndex = 2;
             this.radioButton3.TabStop = true;
             this.radioButton3.Text = "Third Person Perspective";
@@ -256,9 +278,10 @@
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(50, 177);
+            this.radioButton2.Location = new System.Drawing.Point(24, 86);
+            this.radioButton2.Margin = new System.Windows.Forms.Padding(1);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(184, 45);
+            this.radioButton2.Size = new System.Drawing.Size(95, 24);
             this.radioButton2.TabIndex = 1;
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "Following";
@@ -268,9 +291,10 @@
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(50, 87);
+            this.radioButton1.Location = new System.Drawing.Point(24, 42);
+            this.radioButton1.Margin = new System.Windows.Forms.Padding(1);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(126, 45);
+            this.radioButton1.Size = new System.Drawing.Size(67, 24);
             this.radioButton1.TabIndex = 0;
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Static";
@@ -281,18 +305,19 @@
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(7, 8, 7, 8);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1949, 2108);
+            this.pictureBox1.Size = new System.Drawing.Size(1085, 953);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(17F, 41F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2668, 2108);
+            this.ClientSize = new System.Drawing.Size(1482, 953);
             this.Controls.Add(this.splitContainer1);
+            this.Margin = new System.Windows.Forms.Padding(1);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";

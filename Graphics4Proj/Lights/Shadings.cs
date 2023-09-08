@@ -5,7 +5,7 @@ namespace Graphics4Proj.Lights
     public static class Shading
     {
         public static Color Phong(Vector3 position, Vector3 normal, ColorRGB color01, MeshLightParameters mesh,
-            List<Light> lights, Vector3 cameraPosition, Fog? fog)
+            List<Light> lights, Vector3 cameraPosition, Fog fog)
         {
             var resultColor = new ColorRGB { R = 0, G = 0, B = 0 };
 

@@ -7,7 +7,7 @@ namespace Graphics4Proj.Devices
     public class Device
     {
         private DirectBitmap bitmap;
-        public Fog? Fog;
+        public Fog Fog;
         public Camera SelectedCamera;
         private float[,] zTable;
 
